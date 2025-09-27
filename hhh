@@ -1,0 +1,101 @@
+local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/xLRUSiKx"))()
+
+local Window = OrionLib:MakeWindow({Name = "脑叶公司", HidePremium = false, SaveConfig = false, IntroText = "注入器："..identifyexecutor(), ConfigFolder = "脑叶公司"})
+
+OrionLib:MakeNotification({
+	Name = "脑叶公司脚本",
+	Content = "作者：noob 测试版",
+	Image = "rbxassetid://4483345998",
+	Time = 6
+})
+
+local player = Window:MakeTab({
+	Name = "玩家",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+player:AddTextbox({
+	Name = "移动速度",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end
+})
+
+player:AddTextbox({
+	Name = "秒杀",
+	Default = "",
+	game:GetService("Players").LocalPlayer.Backpack.Baton.SettingValues.MaxDamageValue="9223372036854776000"
+	game:GetService("Players").LocalPlayer.Backpack.Baton.SettingValues.MinDamageValue="9223372036854776000"
+	game:GetService("Players").LocalPlayer.Backpack.Baton.SettingValues.StaminaUsage="9223372036854776000"
+	end
+})
+
+player:AddToggle({
+	Name = "穿墙",
+	Default = false,
+	Callback = function(Value)
+		if Value then
+		    Noclip = true
+		    Stepped = game.RunService.Stepped:Connect(function()
+			    if Noclip == true then
+				    for a, b in pairs(game.Workspace:GetChildren()) do
+                        if b.Name == game.Players.LocalPlayer.Name then
+                            for i, v in pairs(game.Workspace[game.Players.LocalPlayer.Name]:GetChildren()) do
+                                if v:IsA("BasePart") then
+                                    v.CanCollide = false
+                                end
+                            end
+                        end
+                    end
+			    else
+				    Stepped:Disconnect()
+			    end
+		    end)
+	    else
+		    Noclip = false
+	    end
+	end
+})
+
+player:AddButton({
+	Name = "飞行",
+	Callback = function()
+      	loadstring(game:HttpGet("https://pastebin.com/raw/U27yQRxS"))()
+  	end
+})
+
+local other = Window:MakeTab({
+    Name = "其他",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+other:AddButton({
+	Name = "没有用的按钮",
+	Callback = function()
+    game:GetService("Players").LocalPlayer.Backpack.Baton.Animations.AttackAnimations.Attack1.CooldownTimer="0.1"
+  	end
+})
+
+other:AddToggle({
+	Name = "夜视",
+	Default = false,
+	Callback = function(Value)
+		if Value then
+		    game.Lighting.Ambient = Color3.new(1, 1, 1)
+		else
+		    game.Lighting.Ambient = Color3.new(0, 0, 0)
+		end
+	end
+})
+
+local about = Window:MakeTab({
+    Name = "关于",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+OrionLib:Init()
